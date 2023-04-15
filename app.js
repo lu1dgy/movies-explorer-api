@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
+const { cors } = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
 const rootRouter = require('./routes/index');
@@ -16,12 +17,15 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 app.use(helmet());
+
 mongoose
   .connect(DB_ADDRESS)
   .then(() => console.log('Соединение с базой данных установлено'))
   .catch((err) => {
     console.log(`Ошибка при подключении к базе данных: ${err.message}`);
   });
+
+app.use(cors);
 
 app.use(rootRouter);
 
