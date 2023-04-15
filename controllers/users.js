@@ -36,4 +36,4 @@ const updateUserProfile = (req, res, next) => {
     });
 };
 
-module.exports.updateProfile = updateUserProfile;
+module.exports.updateUser = updateUserProfile;
