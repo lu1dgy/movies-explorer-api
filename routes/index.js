@@ -4,11 +4,12 @@ const movieRouter = require('./movies');
 const { NotFoundError } = require('../utils/errors/NotFoundError');
 const { logout, login, register } = require('../controllers/auth');
 const auth = require('../middlewares/auth');
+const { loginValidator, registrationValidator } = require('../utils/validators/authValidator');
 
 const router = express.Router();
 
-router.post('/signin', login);
-router.post('/signup', register);
+router.post('/signin', loginValidator, login);
+router.post('/signup', registrationValidator, register);
 
 router.use(auth);
 router.use('/users', userRouter);

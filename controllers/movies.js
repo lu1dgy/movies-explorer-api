@@ -44,7 +44,7 @@ module.exports.createMovie = (req, res, next) => {
     })
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
-        next(new BadRequestError('Переданы некорректные данные при создании карточки.'));
+        next(new BadRequestError('Переданы некорректные данные при создании фильма.'));
       } else {
         next(err);
       }
@@ -54,20 +54,22 @@ module.exports.createMovie = (req, res, next) => {
 module.exports.deleteMovie = (req, res, next) => {
   const { movieId } = req.params;
   if (!mongoose.Types.ObjectId.isValid(movieId)) {
-    throw new BadRequestError('Передан невалидный id карточки.');
+    throw new BadRequestError('Передан невалидный id фильма.');
   }
   Movie.findById(movieId)
     .then((movie) => {
       if (!movie) {
-        throw new NotFoundError(`Карточка с указанным id=${movieId} не найдена.`);
+        throw new NotFoundError(`Фильм с указанным id=${movieId} не найден.`);
       }
       if (movie.owner.toString() !== req.user._id) {
-        throw new ForbiddenError('Вы не можете удалить эту карточку, она чужая');
+        throw new ForbiddenError(
+          'Вы не можете удалить этот фильм, он добавлен другим пользователем',
+        );
       }
       return movie.remove();
     })
     .then(() => {
-      res.send({ message: 'Карточка удалена' });
+      res.send({ message: 'Фильм удален' });
     })
     .catch((err) => {
       next(err);
