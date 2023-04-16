@@ -5,6 +5,7 @@ const { NotFoundError } = require('../utils/errors/NotFoundError');
 const { logout, login, register } = require('../controllers/auth');
 const auth = require('../middlewares/auth');
 const { loginValidator, registrationValidator } = require('../utils/validators/authValidator');
+const { INCORRECT_WAY } = require('../utils/constants');
 
 const router = express.Router();
 
@@ -16,6 +17,6 @@ router.use('/users', userRouter);
 router.use('/movies', movieRouter);
 router.get('/signout', logout);
 
-router.use('*', (req, res, next) => next(new NotFoundError('Этот адрес не найден. Путь неправильный')));
+router.use('*', (req, res, next) => next(new NotFoundError(INCORRECT_WAY)));
 
 module.exports = router;

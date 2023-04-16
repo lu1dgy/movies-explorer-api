@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('../models/user');
+const { WRONG_EMAIL, SUCCESSFULL_ENTER, SUCCESSFULL_EXIT } = require('../utils/constants');
 const { BadRequestError } = require('../utils/errors/BadRequestError');
 const { ConflictError } = require('../utils/errors/ConflictError');
 
@@ -27,7 +28,7 @@ module.exports.register = (req, res, next) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(new BadRequestError(err.message));
       } else if (err.code === 11000) {
-        next(new ConflictError('Пользователь с такой почтой уже существует'));
+        next(new ConflictError(WRONG_EMAIL));
       } else {
         next(err);
       }
@@ -48,7 +49,7 @@ module.exports.login = (req, res, next) => {
           sameSite: 'None',
           httpOnly: true,
         })
-        .send({ message: 'Вы успешно вошли' });
+        .send({ message: SUCCESSFULL_ENTER });
     })
     .catch((e) => {
       next(e);
@@ -58,7 +59,7 @@ module.exports.login = (req, res, next) => {
 module.exports.logout = (req, res, next) => {
   res
     .clearCookie('jwt')
-    .send({ message: 'Успешный выход' })
+    .send({ message: SUCCESSFULL_EXIT })
     .catch((err) => {
       next(err);
     });
