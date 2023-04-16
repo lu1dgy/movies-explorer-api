@@ -9,8 +9,9 @@ const rateLimiter = require('./utils/rateLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
 const rootRouter = require('./routes/index');
+const { MONGO_DB_ADDRESS } = require('./utils/mongoConfig');
 
-const { PORT = 3100, DB_ADDRESS = 'mongodb://0.0.0.0:27017/bitfilmsdb' } = process.env;
+const { PORT = 3100, DB_ADDRESS = MONGO_DB_ADDRESS } = process.env;
 
 const app = express();
 app.use(express.json());
