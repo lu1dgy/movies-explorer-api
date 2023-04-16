@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
 const { cors } = require('./middlewares/cors');
+const rateLimiter = require('./utils/rateLimiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHandler = require('./middlewares/errorHandler');
 const rootRouter = require('./routes/index');
@@ -26,6 +27,8 @@ mongoose
   });
 
 app.use(cors);
+
+app.use(rateLimiter);
 
 app.use(rootRouter);
 
