@@ -1,6 +1,7 @@
 module.exports.URL_REGEX = /^(http|https):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)/i;
 
 module.exports.WRONG_EMAIL = 'Пользователь с такой почтой уже существует';
+module.exports.DUBLE_EMAIL = 'Почта дублируется';
 module.exports.SUCCESSFULL_ENTER = 'Вы успешно вошли';
 module.exports.SUCCESSFULL_EXIT = 'Успешный выход';
 
