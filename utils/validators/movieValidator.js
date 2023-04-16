@@ -11,7 +11,7 @@ module.exports.movieValidator = celebrate({
     image: Joi.string().required().pattern(URL_REGEX),
     trailerLink: Joi.string().required().pattern(URL_REGEX),
     thumbnail: Joi.string().required().pattern(URL_REGEX),
-    movieId: Joi.string().required(),
+    movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
   }),
@@ -19,6 +19,6 @@ module.exports.movieValidator = celebrate({
 
 module.exports.movieIdValidator = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().required().hex().length(24),
+    movieId: Joi.number().required().hex().length(24),
   }),
 });
