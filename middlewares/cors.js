@@ -1,6 +1,9 @@
 const DEFAULT_ALLOWED_METHODS = 'GET,PUT,PATCH,POST,DELETE,HEAD';
 
 const allowedCors = [
+  'http://localhost:3001',
+  'localhost:3001',
+  'https://localhost:3001',
   'http://localhost:3000',
   'localhost:3000',
   'https://localhost:3000',
