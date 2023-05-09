@@ -4,9 +4,9 @@ const allowedCors = [
   'http://localhost:3001',
   'localhost:3001',
   'https://localhost:3001',
-  'http://movies.lapkes.nomoredomains.work',
-  'https://movies.lapkes.nomoredomains.work',
-  'movies.lapkes.nomoredomains.work',
+  'http://movies.lapkes.nomoredomains.monster',
+  'https://movies.lapkes.nomoredomains.monster',
+  'movies.lapkes.nomoredomains.monster',
 ];
 
 module.exports.cors = (req, res, next) => {
