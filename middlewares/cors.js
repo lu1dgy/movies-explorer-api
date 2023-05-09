@@ -13,6 +13,9 @@ const allowedCors = [
   'http://movies.lapkes.nomoredomains.monster',
   'https://movies.lapkes.nomoredomains.monster',
   'movies.lapkes.nomoredomains.monster',
+  'http://movies.lapkes.nomoredomains.work',
+  'https://movies.lapkes.nomoredomains.work',
+  'movies.lapkes.nomoredomains.work',
 ];
 
 module.exports.cors = (req, res, next) => {
