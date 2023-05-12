@@ -46,7 +46,7 @@ module.exports.login = (req, res, next) => {
         .cookie('jwt', token, {
           maxAge: 3600000 * 10,
           secure: NODE_ENV === 'production',
-          sameSite: 'None',
+          sameSite: true,
           httpOnly: true,
         })
         .send({ message: SUCCESSFULL_ENTER });
